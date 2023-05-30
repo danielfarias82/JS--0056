@@ -1,0 +1,52 @@
+package test;
+import java.util.Scanner;
+
+public class cachipun {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("¿Cuántas rondas desea jugar?");
+        int rondas = Integer.parseInt(scanner.nextLine());
+
+        for (int i = 0; i < rondas; i++) {
+            cachipun(scanner);
+        }
+    }
+
+    static void cachipun(Scanner scanner) {
+        String jugadorUno, jugadorDos;
+
+        do {
+            System.out.println("Jugador 1 elige: piedra, papel o tijeras");
+            jugadorUno = scanner.nextLine();
+        } while (!esOpcionValida(jugadorUno));
+
+        do {
+            System.out.println("Jugador 2 elige: piedra, papel o tijeras");
+            jugadorDos = scanner.nextLine();
+        } while (!esOpcionValida(jugadorDos));
+
+        if (jugadorUno.equals(jugadorDos)) {
+            System.out.println("empate");
+        } else if (ganador(jugadorUno, jugadorDos)) {
+            System.out.println("gana el jugador 1");
+        } else {
+            System.out.println("gana el jugador 2");
+        }
+    }
+
+    static boolean esOpcionValida(String opcion) {
+        return opcion.equals("piedra") || opcion.equals("papel") || opcion.equals("tijeras");
+    }
+
+    static boolean ganador(String jugadorUno, String jugadorDos) {
+        if (jugadorUno.equals("piedra")) {
+            return jugadorDos.equals("tijeras");
+        } else if (jugadorUno.equals("papel")) {
+            return jugadorDos.equals("piedra");
+        } else {
+            return jugadorDos.equals("papel");
+        }
+    }
+}
